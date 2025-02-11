@@ -1,5 +1,7 @@
 #!bin/bash
 
+source script/00-config.sh
+
 ADMIN_USER="user_father"
 USER="user_son"
 PASSWORD="azerty123"
