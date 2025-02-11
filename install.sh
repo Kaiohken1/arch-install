@@ -1,5 +1,7 @@
-USERNAME="user"
-SON_USERNAME="user_son"
+#!bin/bash
+
+ADMIN_USER="user_father"
+USER="user_son"
 PASSWORD="azerty123"
 SHARED_FOLDER="/home/shared"
 DISK="/dev/sda"
