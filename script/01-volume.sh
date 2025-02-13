@@ -2,6 +2,8 @@
 
 source /config.sh
 
+chmod 777 01-volume.sh
+
 echo "Création des partitions sur $DISK"
 
 parted -s $DISK mklabel gpt
