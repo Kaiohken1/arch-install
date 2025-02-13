@@ -1,5 +1,3 @@
-#!bin/bash
-
 source script/config.sh
 
 set -x
