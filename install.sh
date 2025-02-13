@@ -2,6 +2,7 @@
 set -x
 set -eo pipefail
 
+chmod 777 script/*
 
 if [ ! -f script/config.sh ]; then
     echo "Error: config.sh not found!"
@@ -23,8 +24,8 @@ Starting...
 
 # Execute volume script
 
-if [ ! -f script/01-volume.sh ]; then
+if [ ! -f 01-volume.sh ]; then
     echo "Error: 09-shared_folder.sh not found!"
     exit 1
 fi
-./script/01-volume.sh
+./01-volume.sh
