@@ -1,5 +1,3 @@
-#!bin/bash
-
 source /config.sh
 
 groupadd $SHARED_SHARED_FOLDER_GROUP_NAME

@@ -1,5 +1,5 @@
 
-source script/config.sh
+source config.sh
 
 
 echo "Création des partitions sur $DISK"

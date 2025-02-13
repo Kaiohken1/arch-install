@@ -1,4 +1,4 @@
-source /script/config.sh
+source config.sh
 
 echo "Installation of basics system"
 
