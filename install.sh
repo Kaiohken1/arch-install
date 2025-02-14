@@ -2,8 +2,6 @@
 set -x
 set -eo pipefail
 
-chmod +x script/*.sh
-
 echo -ne "
 Starting...
 "
