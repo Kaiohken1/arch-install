@@ -17,8 +17,12 @@ input {
 device:epic-mouse-v1 {
     sensitivity = -0.5
 }
+
+debug:disable_logs = false
+
 CONF
 chown -R $ADMIN_USER:$ADMIN_USER /home/$ADMIN_USER/.config
+chmod 755 /home/$ADMIN_USER/.config/hypr
 
 pacman -S --noconfirm virtualbox virtualbox-host-modules-arch
 usermod -aG vboxusers $ADMIN_USER
