@@ -16,13 +16,14 @@ partprobe $DISK
 echo $PASSWORD | cryptsetup luksFormat --batch-mode $ROOT_PARTITION
 echo $PASSWORD | cryptsetup open $ROOT_PARTITION cryptlvm
 
-pvcreate /dev/mapper/cryptlvm
+pvcreate $CRYPT_PV
 vgcreate $VOLUME_GROUP /dev/mapper/cryptlvm
 
 lvcreate -L 8G -n lvswap $VOLUME_GROUP
-lvcreate -L 40G -n lvrootfs $VOLUME_GROUP
+lvcreate -L 35G -n lvrootfs $VOLUME_GROUP
 lvcreate -L 10G -n lvvmdata $VOLUME_GROUP
 lvcreate -L 10G -n lvencrypteddata $VOLUME_GROUP
+lvcreate -L 5G -n lvshared $VOLUME_GROUP
 lvcreate -l 50%FREE -n lvhomeu $VOLUME_GROUP
 lvcreate -l 100%FREE -n lvhomesu $VOLUME_GROUP
 
@@ -31,6 +32,7 @@ mkfs.ext4 /dev/$VOLUME_GROUP/lvhomeu
 mkfs.ext4 /dev/$VOLUME_GROUP/lvhomesu
 mkfs.ext4 /dev/$VOLUME_GROUP/lvvmdata
 mkfs.ext4 /dev/$VOLUME_GROUP/lvencrypteddata
+mkfs.ext4 /dev/$VOLUME_GROUP/lvshared
 mkswap /dev/$VOLUME_GROUP/lvswap
 
 mount /dev/$VOLUME_GROUP/lvrootfs /mnt
@@ -46,6 +48,9 @@ mount /dev/$VOLUME_GROUP/lvvmdata /mnt/var/vm
 
 mkdir -p /mnt/dedicated_space
 mount /dev/$VOLUME_GROUP/lvencrypteddata /mnt/dedicated_space
+
+mkdir -p /mnt/shared
+mount /dev/$VOLUME_GROUP/lvshared /mnt/home/shared
 
 swapon /dev/$VOLUME_GROUP/lvswap
 

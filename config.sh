@@ -9,4 +9,4 @@ export ROOT_PARTITION="/dev/sda2"
 export VOLUME_GROUP="archvg"
 export SHARED_FOLDER="/shared"
 export SHARED_FOLDER_GROUP_NAME="shared_folder"
-
+export CRYPT_PV="/dev/mapper/cryptlvm"
