@@ -1,10 +1,10 @@
-source config.sh
+source ./config.sh
 
 echo "Installation of basics system"
 pacman -Syu --noconfirm
 # Installs the essential packages: base system, development tools, Linux kernel, firmware, text editor (Neovim),
 # networking tools (NetworkManager), bootloader (GRUB), and EFI boot manager (efibootmgr).
-pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager grub efibootmgr
+pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager
 
 
 # Set the system timezone
