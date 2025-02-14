@@ -1,4 +1,4 @@
-source /config.sh
+source ./config.sh
 
 groupadd $SHARED_SHARED_FOLDER_GROUP_NAME
 mkdir /home/$SHARED_FOLDER/

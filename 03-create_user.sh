@@ -1,4 +1,4 @@
-source /root/config.sh
+source ./config.sh
 # wheel is used on lot of distribution to have admin privileges
 useradd -m -G wheel $ADMIN_USER
 useradd -m -G users $USER

@@ -1,4 +1,4 @@
-source /root/config.sh
+source ./config.sh
 
 # System configuation
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
