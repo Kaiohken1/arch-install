@@ -54,7 +54,3 @@ mkdir -p /mnt/boot
 mount $EFI_PARTITION /mnt/boot
 
 mkdir -p /mnt/etc
-genfstab -U /mnt >> /mnt/etc/fstab
-echo "/dev/mapper/lvencrypteddata  none  ext4  defaults  0  0" >> /mnt/etc/fstab
-
-echo "HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck)" > /mnt/etc/mkinitcpio.conf
