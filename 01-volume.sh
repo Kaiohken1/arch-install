@@ -68,5 +68,5 @@ genfstab -U /mnt >> /mnt/etc/fstab
 echo "/dev/mapper/dedicated_space  none  ext4  defaults  0  0" >> /mnt/etc/fstab
 
 mkdir -p /mnt/root/install-scripts
-cp 03-create_user.sh 04-external_install.sh 05-share_folder.sh 06-boot.sh /mnt/root/install-scripts/
+cp config.sh 02-base_install.sh 03-create_user.sh 04-external_install.sh 05-share_folder.sh 06-boot.sh /mnt/root/install-scripts/
 chmod +x /mnt/root/install-scripts/*.sh
