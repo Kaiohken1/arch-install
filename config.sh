@@ -1,6 +1,6 @@
 #!bin/bash
 
-export ADMIN_USER="user_father"
+export ADMIN_USER="user_father"  
 export USER="user_son"
 export PASSWORD="azerty123"
 export DISK="/dev/sda"

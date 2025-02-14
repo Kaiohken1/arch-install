@@ -1,5 +1,4 @@
-#!/bin/bash
-source ./config.sh
+source config.sh
 
 echo "Installation de Hyprland et VirtualBox..."
 arch-chroot /mnt /bin/bash <<EOF
