@@ -1,5 +1,12 @@
 source ./config.sh
 
+echo "Installation of basics system"
+pacman -S --noconfirm archlinux-keyring
+pacstrap -K /mnt base linux linux-headers linux-lts-headers linux-firmware nano vim intel-ucode btrfs-progs sof-firmware alsa-firmware lvm2 networkmanager 
+
+genfstab -U /mnt >> /mnt/etc/fstab
+echo "/dev/mapper/dedicated_space  none  ext4  defaults  0  0" >> /mnt/etc/fstab
+
 arch-chroot /mnt /bin/bash <<EOF
 # Set the system timezone
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime

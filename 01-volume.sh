@@ -55,18 +55,3 @@ swapon /dev/$VOLUME_GROUP/lvswap
 mkfs.fat -F32 $EFI_PARTITION
 mkdir -p /mnt/boot
 mount $EFI_PARTITION /mnt/boot
-
-mkdir -p /mnt/etc
-
-echo "Installation of basics system"
-pacman -S --noconfirm archlinux-keyring
-# Installs the essential packages: base system, development tools, Linux kernel, firmware, text editor (Neovim),
-# networking tools (NetworkManager), bootloader (GRUB), and EFI boot manager (efibootmgr).
-pacstrap -K /mnt base linux linux-headers linux-lts-headers linux-firmware nano vim intel-ucode btrfs-progs sof-firmware alsa-firmware lvm2 networkmanager 
-
-genfstab -U /mnt >> /mnt/etc/fstab
-echo "/dev/mapper/dedicated_space  none  ext4  defaults  0  0" >> /mnt/etc/fstab
-
-mkdir -p /mnt/root/install-scripts
-cp config.sh 02-base_install.sh 03-create_user.sh 04-external_install.sh 05-share_folder.sh 06-boot.sh /mnt/root/install-scripts/
-chmod +x /mnt/root/install-scripts/*.sh
