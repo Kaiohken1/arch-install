@@ -1,5 +1,6 @@
 source ./config.sh
-# wheel is used on lot of distribution to have admin privileges
+
+arch-chroot /mnt /bin/bash <<EOF
 useradd -m -G wheel $ADMIN_USER
 useradd -m -G users $USER
 
@@ -9,3 +10,4 @@ echo -e "$PASSWORD\n$PASSWORD" | passwd
 
 # delete "#" to use wheel groups for admin
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+EOF

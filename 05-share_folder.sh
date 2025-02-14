@@ -1,5 +1,6 @@
 source ./config.sh
 
+arch-chroot /mnt /bin/bash <<EOF
 # Create the shared folder group
 groupadd shared
 
@@ -13,3 +14,4 @@ usermod -a -G shared $ADMIN_USER
 usermod -a -G shared $USER
 
 echo "Shared folder setup completed successfully."
+EOF

@@ -1,5 +1,6 @@
 source ./config.sh
 
+arch-chroot /mnt /bin/bash <<EOF
 echo "Installation de Hyprland et VirtualBox..."
 pacman -S --noconfirm hyprland wayland xorg-xwayland foot swaybg
 
@@ -23,3 +24,4 @@ pacman -S --noconfirm virtualbox virtualbox-host-dkms
 usermod -aG vboxusers $ADMIN_USER
 
 echo "vboxdrv" > /etc/modules-load.d/virtualbox.conf
+EOF

@@ -1,5 +1,6 @@
 source ./config.sh
 
+arch-chroot /mnt /bin/bash <<EOF
 # Set the system timezone
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 hwclock --systohc
@@ -18,5 +19,4 @@ echo "127.0.1.1 archlinux.localdomain archlinux" >> /etc/hosts
 # Enable essential services for the system
 echo "Enabling essential services..."
 systemctl enable NetworkManager
-
 EOF
