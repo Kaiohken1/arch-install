@@ -2,7 +2,7 @@ source ./config.sh
 
 echo "Installation of basics system"
 pacman -S --noconfirm archlinux-keyring
-pacstrap -K /mnt base linux linux-headers linux-lts-headers linux-firmware nano vim intel-ucode btrfs-progs sof-firmware alsa-firmware lvm2 networkmanager 
+pacstrap -K /mnt base linux linux-headers linux-lts-headers linux-firmware nano vim intel-ucode btrfs-progs sof-firmware alsa-firmware lvm2 networkmanager sudo openssh
 
 genfstab -U /mnt >> /mnt/etc/fstab
 echo "/dev/mapper/dedicated_space  none  ext4  defaults  0  0" >> /mnt/etc/fstab
