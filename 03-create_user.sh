@@ -1,5 +1,4 @@
 source ./config.sh
-arch-chroot /mnt /bin/bash <<EOF
 # wheel is used on lot of distribution to have admin privileges
 useradd -m -G wheel $ADMIN_USER
 useradd -m -G users $USER
@@ -9,5 +8,4 @@ echo -e "$PASSWORD\n$PASSWORD" | passwd "$USER"
 echo -e "$PASSWORD\n$PASSWORD" | passwd
 
 # delete "#" to use wheel groups for admin
-sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
-EOF
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
