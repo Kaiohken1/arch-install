@@ -1,43 +1,28 @@
+#!/bin/bash
 source ./config.sh
 
-echo "Installing VirtualBox, Hyprland, and essential tools..."
+echo "Installation de Hyprland et VirtualBox..."
+arch-chroot /mnt /bin/bash <<EOF
+pacman -S --noconfirm hyprland wayland xorg-xwayland foot swaybg
 
+echo "Configuration de Hyprland..."
+mkdir -p /home/$ADMIN_USER/.config/hypr
+cat > /home/$ADMIN_USER/.config/hypr/hyprland.conf <<CONF
+exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+monitor = ,preferred,auto,1
 
-echo "Configuring VirtualBox with its dedicated space..."
-arch-chroot /mnt mkdir -p /var/lib/virtualbox
-arch-chroot /mnt chown -R $ADMIN_USER:$ADMIN_USER /var/lib/virtualbox
-echo "/dev/mapper/$VOLUME_GROUP-lvvmdata /var/lib/virtualbox ext4 defaults 0 2" >> /mnt/etc/fstab
+input {
+    kb_layout = fr
+}
 
+device:epic-mouse-v1 {
+    sensitivity = -0.5
+}
+CONF
+chown -R $ADMIN_USER:$ADMIN_USER /home/$ADMIN_USER/.config
 
-# Hyprland configuration
-echo "Setting up Hyprland custom configuration..."
-arch-chroot /mnt mkdir -p /home/$ADMIN_USER/.config/hypr
-arch-chroot /mnt mkdir -p /home/$USER/.config/hypr
+pacman -S --noconfirm virtualbox virtualbox-host-dkms
+usermod -aG vboxusers $ADMIN_USER
 
-# Hyprland config
-cat <<EOF | arch-chroot /mnt tee /home/$ADMIN_USER/.config/hypr/hyprland.conf
-# Monitor setup
-monitor=,preferred
-
-# Window layout
-layout=master
-master_layout=gaps_outer=10,gaps_inner=15,border_size=3
-
-# Cursor settings
-cursor_inactive_timeout=0
-cursor_size=24
-
-# Animations
-animation=windows,1,10,default
-
-# Keybindings (example)
-bind=SUPER+ENTER,exec,kitty
-bind=SUPER+Q,close
-bind=SUPER+SPACE,workspace,e+1
-bind=SUPER+F,fullscreen
+echo "vboxdrv" > /etc/modules-load.d/virtualbox.conf
 EOF
-
-arch-chroot /mnt chown -R $ADMIN_USER:$ADMIN_USER /home/$ADMIN_USER/.config/hypr
-arch-chroot /mnt chown -R $USER:$USER /home/$USER/.config/hypr
-
-echo "VirtualBox and Hyprland installation completed."
