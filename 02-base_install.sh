@@ -15,7 +15,6 @@ echo "Configuration of the locale..."
 echo "en_US.UTF-8 UTF-8" >> /mnt/etc/locale.gen
 arch-chroot /mnt locale-gen
 echo "LANG=en_US.UTF-8" > /mnt/etc/locale.conf
-|
 echo "Configuration of the hostname..."
 echo "archlinux" > /mnt/etc/hostname
 # Sets the hostname of the system to "archlinux". This is used to identify the machine on a network.
