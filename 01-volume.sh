@@ -35,10 +35,10 @@ mkswap /dev/$VOLUME_GROUP/lvswap
 
 mount /dev/$VOLUME_GROUP/lvrootfs /mnt
 
-mkdir -p /mnt/home/user
+mkdir -p /mnt/home/user_father
 mount /dev/$VOLUME_GROUP/lvhomeu /mnt/home/user_father
 
-mkdir -p /mnt/home/son_user
+mkdir -p /mnt/home/user_son
 mount /dev/$VOLUME_GROUP/lvhomesu /mnt/home/user_son
 
 mkdir -p /mnt/var/vm
