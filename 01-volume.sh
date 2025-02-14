@@ -14,10 +14,10 @@ parted -s $DISK mkpart primary ext4 512MiB 100%
 partprobe $DISK
 
 echo $PASSWORD | cryptsetup luksFormat --batch-mode $ROOT_PARTITION
-echo $PASSWORD | cryptsetup open $ROOT_PARTITION cryptlvm
+echo $PASSWORD | cryptsetup open $ROOT_PARTITION $VG_NAME
 
-pvcreate $CRYPT_PV
-vgcreate $VOLUME_GROUP /dev/mapper/cryptlvm
+pvcreate /dev/mapper/$VG_NAME
+vgcreate $VOLUME_GROUP /dev/mapper/$VG_NAME
 
 lvcreate -L 8G -n lvswap $VOLUME_GROUP
 lvcreate -L 35G -n lvrootfs $VOLUME_GROUP
@@ -49,7 +49,7 @@ mount /dev/$VOLUME_GROUP/lvvmdata /mnt/var/vm
 mkdir -p /mnt/dedicated_space
 mount /dev/$VOLUME_GROUP/lvencrypteddata /mnt/dedicated_space
 
-mkdir -p /mnt/shared
+mkdir -p /mnt/home/shared
 mount /dev/$VOLUME_GROUP/lvshared /mnt/home/shared
 
 swapon /dev/$VOLUME_GROUP/lvswap

@@ -4,7 +4,7 @@ echo "Installation of basics system"
 pacman -S --noconfirm archlinux-keyring
 # Installs the essential packages: base system, development tools, Linux kernel, firmware, text editor (Neovim),
 # networking tools (NetworkManager), bootloader (GRUB), and EFI boot manager (efibootmgr).
-pacstrap /mnt base linux linux-headers linux-lts-headers linux-firmware nano vim intel-ucode btrfs-progs sof-firmware alsa-firmware
+pacstrap /mnt base linux linux-headers linux-lts-headers linux-firmware nano vim intel-ucode btrfs-progs sof-firmware alsa-firmware lvm2
 
 # Set the system timezone
 arch-chroot /mnt ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
