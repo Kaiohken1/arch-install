@@ -12,7 +12,6 @@ bash 03-create_user.sh
 bash 04-external_install.sh
 bash 05-share_folder.sh
 bash 06-boot.sh
-EOF
 
 echo -ne "
 Installation completed ready to us !...

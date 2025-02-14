@@ -16,6 +16,7 @@ echo "Configuration of the locale..."
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "KEYMAP=fr" > /etc/vconsole.conf
 echo "Configuration of the hostname..."
 echo "archlinux" > /etc/hostname
 # Sets the hostname of the system to "archlinux". This is used to identify the machine on a network.
